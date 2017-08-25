@@ -1,5 +1,9 @@
 {
     "name": "ahebrank/eck_autolabel",
     "type": "drupal-module",
-    "description": "Show autolabel tab for ECK entities"
-}
+    "description": "Show autolabel tab for ECK entities",
+    "require": {
+        "drupal/eck": "~1",
+        "drupal/auto_entitylabel": "~2"
+    }
+} 
