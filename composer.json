@@ -1,0 +1,5 @@
+{
+    "name": "ahebrank/eck_autolabel",
+    "type": "drupal-module",
+    "description": "Show autolabel tab for ECK entities"
+}

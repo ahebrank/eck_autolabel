@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * @file
+ * Contains eck_autolabel.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function eck_autolabel_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the eck_autolabel module.
+    case 'help.page.eck_autolabel':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('ECK entity autolabel integration') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function eck_autolabel_entity_type_alter(array &$entity_types) {
+  foreach ($entity_types as $entity_type) {
+    if ($entity_type->getProvider() == 'eck' && !is_null($entity_type->getBundleOf())){
+      $entity_type->setLinkTemplate('auto-label', $entity_type->getLinkTemplate('edit-form') . "/auto-label");
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function eck_autolabel_form_auto_entitylabel_settings_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $path = trim(\Drupal::request()->getpathInfo(), '/');
+  $arg  = explode('/', $path);
+  if ($arg[2] == 'eck') {
+    $form['auto_entitylabel']['token_help']['#token_types'][] = $arg[4];
+  }
+}

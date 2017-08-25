@@ -1,0 +1,8 @@
+name: ECK autolabel
+type: module
+description: ECK entity autolabel integration
+core: 8.x
+package: NewCity
+dependencies:
+  - eck
+  - auto_entitylabel
