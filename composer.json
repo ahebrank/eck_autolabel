@@ -4,6 +4,6 @@
     "description": "Show autolabel tab for ECK entities",
     "require": {
         "drupal/eck": "~1",
-        "drupal/auto_entitylabel": "~2"
+        "drupal/auto_entitylabel": "~2|~3"
     }
 } 
