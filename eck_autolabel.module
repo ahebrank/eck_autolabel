@@ -29,7 +29,7 @@ function eck_autolabel_help($route_name, RouteMatchInterface $route_match) {
  */
 function eck_autolabel_entity_type_alter(array &$entity_types) {
   foreach ($entity_types as $entity_type) {
-    if ($entity_type->getProvider() == 'eck' && !is_null($entity_type->getBundleOf())){
+    if ($entity_type->getProvider() == 'eck' && !is_null($entity_type->getBundleOf())) {
       $entity_type->setLinkTemplate('auto-label', $entity_type->getLinkTemplate('edit-form') . "/auto-label");
     }
   }
@@ -40,7 +40,7 @@ function eck_autolabel_entity_type_alter(array &$entity_types) {
  */
 function eck_autolabel_form_auto_entitylabel_settings_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $path = trim(\Drupal::request()->getpathInfo(), '/');
-  $arg  = explode('/', $path);
+  $arg = explode('/', $path);
   if ($arg[2] == 'eck') {
     $form['auto_entitylabel']['token_help']['#token_types'][] = $arg[4];
   }
